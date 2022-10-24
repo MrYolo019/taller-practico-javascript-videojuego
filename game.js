@@ -22,12 +22,17 @@ function setCanvasSize() {
     startGame();
 }
 
+const map = maps[0];
+const mapRows = map.trim().split('\n');
+const mapRowCols = mapRows.map(row => row.trim().split(''));
+
 function startGame() {
     game.font = (elementsSize - 12) + 'px Verdanada';
     game.textAlign = 'end';
 
-     for (let i = 1; i <= 10; i++) {
-        game.fillText(emojis['X'], elementsSize * i, elementsSize);
-        
+     for (let row = 1; row <= 10; row++) {
+        for (let col = 0; col <=10; col++) {
+        game.fillText(emojis[mapRowCols[row -1][col -1]], elementsSize * col, elementsSize * row);
+        }
     }
 }
