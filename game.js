@@ -12,10 +12,15 @@ window.addEventListener('resize', setCanvasSize);
 let canvasSize; 
 let elementsSize;
 
-let playerPosition = {
+const playerPosition = {
     x: undefined,
     y: undefined,
 }
+const giftPosition = {
+    x: undefined,
+    y: undefined,
+}
+const enemiesPositions = [];
 
 function setCanvasSize() {
     if(window.innerHeight > innerWidth){
@@ -52,7 +57,15 @@ function startGame() {
                     playerPosition.x = posX;
                     playerPosition.y = posY;
                     console.log(playerPosition);
-                }
+                } 
+            } else if (col == 'I'){
+                giftPosition.x = posX;
+                giftPosition.y = posY;
+            } else if (col == 'X') {
+                enemiesPositions.push({
+                    x: posX,
+                    y: posY,
+                });
             }
 
             game.fillText(emoji, posX, posY);
@@ -63,6 +76,14 @@ function startGame() {
 }
 
 function movePlayer(){
+    const giftCollisionX = playerPosition.x.toFixed(3) == giftPosition.x.toFixed(3);
+    const giftCollisionY = playerPosition.y.toFixed(3) == giftPosition.y.toFixed(3);
+    const giftCollision = giftCollisionX && giftCollisionY;
+
+    if (giftCollision){
+        console.log('Ganaste');
+    }
+    
     game.fillText(emojis['PLAYER'], playerPosition.x, playerPosition.y)
 }
 
