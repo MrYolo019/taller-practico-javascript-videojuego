@@ -9,9 +9,6 @@ const spanTime = document.querySelector('#time');
 const spanRecord = document.querySelector('#record');
 const spanResult = document.querySelector('#result');
 
-window.addEventListener('load', setCanvasSize);
-window.addEventListener('resize', setCanvasSize);
-
 let canvasSize; 
 let elementsSize;
 let level = 0;
@@ -31,18 +28,29 @@ const giftPosition = {
 }
 let enemiesPositions = [];
 
+window.addEventListener('load', setCanvasSize);
+window.addEventListener('resize', setCanvasSize);
+
+// function fixNumber(n){
+//     return Number(n.toFixed(2));
+// }
+
 function setCanvasSize() {
     if(window.innerHeight > innerWidth){
-        canvasSize = window.innerWidth * 0.8;
+        canvasSize = window.innerWidth * 0.7;
     } else{
-        canvasSize = window.innerHeight * 0.8;
+        canvasSize = window.innerHeight * 0.7;
     }
+
+    canvasSize = Number(canvasSize.toFixed(0));
 
     canvas.setAttribute('width', canvasSize)
     canvas.setAttribute('height', canvasSize)
 
     elementsSize = (canvasSize / 10) - 2;
 
+    playerPosition.x = undefined;
+    playerPosition.y = undefined;
     startGame();
 }
 
