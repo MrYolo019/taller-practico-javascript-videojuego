@@ -8,6 +8,7 @@ const spanLives = document.querySelector('#lives');
 const spanTime = document.querySelector('#time');
 const spanRecord = document.querySelector('#record');
 const spanResult = document.querySelector('#result');
+const botonReiniciar = document.querySelector('#reset');
 
 let canvasSize; 
 let elementsSize;
@@ -103,6 +104,8 @@ function startGame() {
         });
     });
 
+    botonReiniciar.addEventListener('click', reiniciarJuego);
+
     movePlayer();
 }
 
@@ -164,7 +167,10 @@ function gameWin(){
     } else {
         localStorage.setItem('record_time', playerTime);
     }
-    
+}
+
+function reiniciarJuego () {
+    location.reload();
 }
 
 function showLives() {
